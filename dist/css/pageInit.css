@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+}
+.wrapper {
+    width: 100vw;
+    max-width: 550px;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+.blank{
+    height:50vw;
+}
+
+.blank1{
+position:fixed;
+bottom:0em;
+height:5em;
+width:100vw;
+background-color:white;
+-webkit-transform:translateZ(0) ;
+}
+
+#add{
+    position: fixed;
+    bottom: 1.25em;
+    left:15vw;
+    height:12vw;
+    border-radius: 5vw   !important;
+    width: 70vw;
+    font-size:4.5vw;
+-webkit-transform:translateZ(0) ;
+}
+
+
+#durgbox_img {
+    width: 10vw !important; 
+    min-width: 200px !important; 
+    height: 10vw;
+    min-height: 200px;
+    margin-top: 9em !important;
+}
+.add_med{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    height:100vh;
+  }
+.add_med img{
+    width:37vw;
+    height:37vw;
+  }
+.add_med div:nth-child(1){
+    margin-bottom:2vw;	
+  }
+.add_med div:nth-child(2){
+    font-size:6.5vw;
+    font-weight:700; 
+    margin-bottom:2vw;	
+  }
+.add_med div:nth-child(3){
+    font-size:4.5vw;
+    font-weight:400;
+    margin-bottom:2vw;	
+  }

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
+    <script src="js/rolldate.min.js" type="text/javascript"></script>
+    <script src="js/setTime.js" type="text/javascript"></script>
+    <link href="css/layout.css" rel="stylesheet">
+    <link href="css/pickMed.css" rel="stylesheet">
+    <link href="css/medNotify.css" rel="stylesheet">        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>藥物提醒</title>
+  </head>
+  <body>
+  </body>
+  <script>
+    function Load_medNotify(userId){
+      $('body').empty()
+      $('body').append(`<div class="wrapper row mx-auto">
+                          <div>
+                            <div id="medNotify_div">
+                            </div>   
+                            <div class="blank"></div>
+                            <button class="btn btn-dark mx-auto" type="button" id="add">新增提醒</button>
+                            <p class="btnHeight"></p> 
+                          </div>
+                        </div>`)
+
+      $.ajax({
+        url: 'get-notify',
+        data: {userId: userId},
+        success: function (data){
+          if(Object.keys(data).length != 0){
+            $.each(data, function (key, value){
+              $('#medNotify_div').append(`<p class="time">${value.notifyTime.split(':')[0]}:${value.notifyTime.split(':')[1]}</p>
+                                          <div class="row row-cols-3 mx-auto px-1 med_div" id="med_div_${value.user_NotifyId}">
+                                          </div>
+                                          <div class="row justify-content-around mt-2">
+                                            <input class="deletebtn col btn shadow" type="button" value="  刪除" del_user_NotifyId="${value.user_NotifyId}">
+                                            <input class="editbtn col btn shadow" type="button" value="  編輯" edit_user_NotifyTime="${value.notifyTime}" edit_user_NotifyId="${value.user_NotifyId}">
+                                          </div>`)
+              $.ajax({
+                url: 'get-med-notify',
+                data: {user_NotifyId: value.user_NotifyId},
+                success: function(data){
+                  $.each(data.slice(0,3), function (key, value){
+                    $('#med_div_'+value.user_NotifyId).append(`<div class="med-imgs col-sm-3 mt-2 pb-3 px-1">
+                                                                <img src="${value.medPicture}">
+                                                                <div class="med-name shadow">${value.medName}</div>
+                                                              </div>`)
+                  })
+                }
+              })
+            })
+          }else{
+            $('body').empty()
+            $('body').append(`<div class="add_remind">
+                                <div><img src="img/remind.png"></div>
+                                <div>建立藥物提醒</div>
+                                <div>讓您不再困惑藥物種類及服用時間</div>
+                              </div>
+                              <button class="btn btn-dark mx-auto" id="add" type="button">新增提醒</button>`)
+          }
+        }
+      })
+      
+    }
+    function Load_pickMed(userId){
+      $.ajax({
+        url: 'pick-med',
+        data: {
+          userId: userId
+        },
+        success: function (data){
+          $('body').empty()
+          $('body').append(`<div class="wrapper row mx-auto">
+                              <div>
+                                  <div class="timeCheck">
+                                    <p class="title check">新增提醒時間</p>
+                                      <div class="roll-time">
+                                        <input type="text" id="hour" name="hour" placeholder="9" value="">
+                                        :
+                                        <input type="text" id="min" name="min" placeholder="00" value="">
+                                    </div>  
+                                  </div>                                        
+                                  <p class="title">選擇藥物</p>
+                                  <div class="pillCheck">
+                                    <p id="warning_sentence">請至少選擇一種藥物</p>
+                                    <div class="row row-cols-3" id="medDisplayCheck"></div>
+                                  </div>
+                                  <div class="pillChosen">
+                                    <div class="row row-cols-3" id="medDisplayChosen"></div>
+                                  </div>
+                                  <button class="btn mx-auto" type="button" id="cancelbtn">取消</button>
+                                  <button class="btn mx-auto" type="button" id="nextbtn">下一步</button>
+                                  <button class="btn mx-auto" type="button" id="backbtn">重新選擇藥物</button>
+                                  <button class="btn mx-auto" type="button" id="submitbtn" value="insert">完成</button>
+                                </div>
+                              </div>`)
+          $.each(data, function (key, value){
+            $('#medDisplayCheck').append(`<div class="med-imgs mr-1 mt-3" id="medCheck_${value.user_MedId}">
+                                            <label for="cbox_${value.user_MedId}"><img src="${value.medPicture}"></label><input class="form-check-input" type="checkbox" value="${value.user_MedId}" id="cbox_${value.user_MedId}">
+                                            <div class="med-name shadow">${value.medName}</div>
+                                          </div>`)
+            $('#medDisplayChosen').append(`<div class="med-imgs mr-1 mt-3 medChosen" id="medChosen_${value.user_MedId}">
+                                              <img src="${value.medPicture}">
+                                              <div class="med-name shadow">${value.medName}</div>
+                                            </div>`)                                    
+          })
+
+        }
+      })            
+    }
+
+    liff.init({
+      liffId:'1655992379-gxm4EP6r'
+    })
+    .then(() => {
+      liff.getProfile()
+      .then(profile =>{
+        $(document).ready(function(){
+          Load_medNotify(profile.userId)          
+          $('body').on('click', '#add', function(){  
+            Load_pickMed(profile.userId)             
+          })                    
+
+          $('body').on('click', '#nextbtn', function(){
+            $('input[type="checkbox"]').each(function(index) {
+                if(!this.checked){
+                  $('#medChosen_'+this.value).css('display','none')
+                }  
+            })
+            $('.pillCheck').css('display','none')
+            $('.pillChosen').css('display','initial')
+            $('.timeCheck').css('display', 'initial')
+            $('#nextbtn').css('display','none')
+            $('#backbtn').css('display','initial')
+            $('#submitbtn').css('display','initial')
+            clock()
+          })
+
+          $('body').on('click', '#backbtn', function(){
+            $('input[type="checkbox"]').each(function(index) {
+                if(!this.checked){
+                  $('#medChosen_'+this.value).css('display','initial')
+                }  
+            })            
+            $('.pillCheck').css('display','initial')
+            $('.pillChosen').css('display','none')
+            $('.timeCheck').css('display', 'none')
+            $('#nextbtn').css('display','initial')
+            $('#backbtn').css('display','none')
+            $('#submitbtn').css('display','none')
+          })
+
+
+          $('body').on('click', '#submitbtn', function(){   
+            let user_MedId = []
+            $('input[type="checkbox"]').each(function(index) {
+                if(this.checked) user_MedId.push(this.value)  
+            })             
+            $.ajax({
+              url: 'create-med-notify',
+              data: {
+                userId: profile.userId,
+                hour: $('#hour').val(),
+                min: $('#min').val(),
+                queryCond: $('#submitbtn').val(),
+                user_MedId: user_MedId
+              },
+              success: function (data){
+                Load_medNotify(profile.userId)               
+              }
+            })
+          })                 
+        
+          $('body').on('click', '.deletebtn', function(){
+            $.ajax({
+              url: 'delete-notify',
+              data: {user_NotifyId: $(this).attr('del_user_NotifyId')},
+              success: function (data){
+                Load_medNotify(profile.userId)
+              }
+            })
+          })
+
+          $('body').on('click', '.editbtn', function(){
+            let user_NotifyTime = $(this).attr('edit_user_NotifyTime')
+            let user_NotifyId = $(this).attr('edit_user_NotifyId')            
+            Load_pickMed(profile.userId)
+            let checkExist = setInterval(function() {
+              if ($('#medDisplayCheck').length) {
+                  clearInterval(checkExist)
+                  $.ajax({
+                    url: 'edit-notify',
+                    data: {user_NotifyId: user_NotifyId},
+                    success: function (data){
+                      $('.medChosen').css('display','none')
+                      $.each(data, function (key, value){
+                        $('#cbox_'+value.user_MedId).prop( "checked", true )
+                        $('#medChosen_'+value.user_MedId).css('display','initial')
+                      })
+                    }
+                  })                  
+                  $('.timeCheck').css('display', 'initial')
+                  $('.pillCheck').css('display','none')
+                  $('.pillChosen').css('display','initial')
+                  $('#nextbtn').css('display','none')
+                  $('#backbtn').css('display','initial')
+                  $('#submitbtn').css('display','initial')
+                  $('#hour').val(user_NotifyTime.split(':')[0])
+                  $('#min').val(user_NotifyTime.split(':')[1])
+                  $('#submitbtn').val('update_'+user_NotifyId)
+                  clock()
+              }
+            }, 10)
+
+          })
+
+          $('body').on('click', '#cancelbtn', function(){
+            liff.closeWindow()
+          })   
+
+        })      
+        
+      })
+      .catch((err) => {
+        console.log('error:', err)
+      })
+    })
+    .catch(error => {
+      //error callback   
+    })      
+           
+  </script>
+</html>

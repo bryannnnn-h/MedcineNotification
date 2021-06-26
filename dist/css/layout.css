@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+}
+.wrapper {
+    width: 100vw;
+    max-width: 550px;
+    padding: 5vw;
+}
+
+.title {
+    font-weight: bold;
+    margin-bottom: 1em;
+    font-size: 1.5em;
+}
+
+
+button{
+    position:fixed;
+    bottom:2.8em;
+    left:15vw;
+    border-radius: 12px  !important;
+    width:70vw;
+    max-width:440px;
+    -webkit-transform:translateZ(0);
+    
+}
+
+
+.blank {
+    position: fixed;
+    left: 0%;
+    bottom: 0;
+    height: 7em;
+    width: 100vw;
+    background-color:white;  
+}
+
+
+.btnHeight {
+    height: 10em;
+}
+
+#landing_img {
+    width: 10vw !important; 
+    min-width: 200px !important; 
+    height: 10vw;
+    min-height: 200px;
+    margin-top: 9em !important;
+}

@@ -1,0 +1,75 @@
+.med-imgs {
+    position: relative;
+    padding-right: 0;
+}
+
+
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.roll-time {
+    margin-left: 0vw !important;
+    width: 70vw;
+}
+
+input[type='checkbox'] {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+
+
+input[type="text"], pre {
+    font-size: 2.8em;
+    display: inline;    
+}
+
+input[type="text"] {
+    border: none;
+    width: 2.5em;
+    text-align: center;
+    margin: 1.5vw 0 3vw .3em;
+}
+
+pre {
+    white-space: normal;
+}
+
+#backbtn, #submitbtn, #cancelbtn, #nextbtn {
+    width: 45vw;
+    max-width: 220px;
+    color: #FFFFFF !important;
+}
+
+#backbtn, #submitbtn {
+    display: none;
+}
+
+#cancelbtn, #backbtn{
+    left: 3%;
+    background-color: #A4A4A4;
+}
+
+#cancelbtn:hover, #backbtn:hover{
+    background-color: #7D7D7D;
+}
+
+#nextbtn, #submitbtn {
+    float: right;
+    left: 51%;
+    background-color: #27AE60;
+}
+
+#nextbtn:hover, #submitbtn:hover {
+    background-color: #219357;
+}
+
+.timeCheck, .pillChosen{
+    display: none;
+}
+
+

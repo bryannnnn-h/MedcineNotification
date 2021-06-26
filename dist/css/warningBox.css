@@ -1,0 +1,53 @@
+#hide{
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    background-color:#3c3c3c;
+    opacity:70%;
+    z-index:1;
+    display:none;  
+}  
+#popWindow{
+    width:80vw;
+    height:50vw;
+    background-color:#f0f0f0;
+    border-radius:5vw; 
+    position:fixed;
+    z-index:2;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+#popWindow img{
+    width:12vw;
+    height:12vw;  
+}
+#popWindow div:nth-child(2){
+    font-size:5.5vw;
+    font-weight:bold;
+    margin: 4vw 0vw 4vw 0vw;  
+}
+#popWindow div:nth-child(3){
+    font-size:4vw;
+    width:65vw;
+    height:10vw;
+    justify-content:space-between;
+    display:flex;  
+}
+#popWindow button{
+    border:0;
+    padding:0;
+    outline:none;
+    width:30vw;
+    border-radius:5vw;
+    color:#ffffff;
+}
+#popWindow button:nth-child(1){
+    background-color:#c4c4c4;
+}
+#popWindow button:nth-child(2){
+    background-color:#fd614b;
+}

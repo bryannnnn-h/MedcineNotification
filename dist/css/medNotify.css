@@ -1,0 +1,99 @@
+.time {
+    font-size: 2em;
+    margin: 1em auto 0 auto;
+    background-color: #27ae60;
+    text-align: center;
+    border-radius: 20px 20px 0 0;
+    color: #FFFFFF;
+}
+
+.med_div {
+    width: 99.8%;
+    background-color: #E0E0E0;
+    border-radius: 0 0 20px 20px;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+
+.med-imgs {
+    padding: 0;
+}
+
+
+.med-name {
+    width: 100px;
+    text-align: center;
+    background: #F0F0F0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+input[type="button"] {
+    border-radius: 20px;
+    max-width: 45%;
+    color: #FFFFFF;
+}
+
+.deletebtn {
+    background-color: #FD614B !important;
+    background-image: url("../img/delete.png");
+    background-repeat: no-repeat;
+    background-position: 33% 45%;
+}
+
+.deletebtn.btn:hover {
+    background-color: #D1513F;
+    color: #FFFFFF;
+}
+
+.editbtn {
+    background-color: #296EA7 !important;
+    background-image: url("../img/edit.png");
+    background-repeat: no-repeat;
+    background-position: 33% 45%;
+}
+
+.editbtn.btn:hover {
+    background-color: #225783;
+    color: #FFFFFF;
+}
+body{
+    font-family:arial;  
+  }
+  .add_remind{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    height:100vh;
+  }
+  .add_remind img{
+    width:37vw;
+    height:37vw;
+  }
+  .add_remind div:nth-child(1){
+    margin-bottom:2vw;	
+  }
+  .add_remind div:nth-child(2){
+    font-size:6.5vw;
+    font-weight:700; 
+    margin-bottom:2vw;	
+  }
+  .add_remind div:nth-child(3){
+    font-size:4.5vw;
+    font-weight:400;
+    margin-bottom:2vw;	
+  }
+  #add{
+      position: fixed;
+      bottom: 1.25em;
+      left:15vw;
+      height:12vw;
+      border-radius: 5vw   !important;
+      width: 70vw;
+      font-size:4.5vw;
+  }

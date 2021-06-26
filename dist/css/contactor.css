@@ -1,0 +1,56 @@
+.contacter_info{
+    display: grid;
+    grid-template-columns: 6vw 13vw 5vw 30vw 20vw 2vw 20vw 2vw;
+    grid-template-rows: 2vw 13vw 2vw;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.profile{ 
+    grid-area: 2/2/3/3;
+    border-radius:50%;
+    background-color:white;
+    background-position:center center;
+    background-size:13vw 13vw;
+    padding:0;
+    overflow:hidden;
+    background-repeat:no-repeat;
+    max-width:100%;
+    max-height:100%;
+}
+.appellation{ 
+grid-area: 2/4/3/5;
+display:flex;
+align-items:center;
+font-size:4vw;
+font-weight:bold;
+}
+.del{ 
+grid-area: 2/7/3/8;
+display:flex;
+align-items:center;
+}
+.del button{
+background-color:transparent;
+border:0;
+padding:0;
+border-radius:5vw;  
+}
+#del{
+display:flex;
+justify-content:center;
+align-items:center;
+width:20vw;
+height:10vw;
+border-radius:5vw;
+color:black;
+font-size:4vw;
+font-weight:bold;
+background-color: #F0F0F0;
+
+}
+#del img{
+width:4.5vw;
+height:4.5vw;
+margin-right:2vw;
+margin-bottom:0.5vw;  
+}
